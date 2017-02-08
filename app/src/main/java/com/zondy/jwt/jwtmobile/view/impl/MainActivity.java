@@ -15,6 +15,7 @@ import com.zondy.jwt.jwtmobile.R;
 import com.zondy.jwt.jwtmobile.base.BaseActivity;
 import com.zondy.jwt.jwtmobile.entity.EntityUser;
 import com.zondy.jwt.jwtmobile.util.SharedTool;
+import com.zondy.jwt.jwtmobile.util.ToastTool;
 import com.zondy.mapgis.android.mapview.MapView;
 
 import java.io.File;
@@ -37,6 +38,8 @@ public class MainActivity extends BaseActivity {
     private LinearLayout llTxl;
     private LinearLayout llSz;
 
+    @BindView(R.id.ll_main_jingqcl)
+    LinearLayout llMainJingqcl;//警情处理
     @Override
     public int setCustomContentViewResourceId() {
         return R.layout.activity_main;
@@ -93,6 +96,13 @@ public class MainActivity extends BaseActivity {
                 Intent intent = new Intent(MainActivity.this, SettingActivity.class);
                 startActivity(intent);
                 drawerLayout.closeDrawers();
+            }
+        });
+        llMainJingqcl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ToastTool.getInstance().shortLength(context,"警情处理",true);
+                startActivity(JingqListActivity.createIntent(context));
             }
         });
     }
