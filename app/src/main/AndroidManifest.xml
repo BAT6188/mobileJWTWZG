@@ -114,6 +114,37 @@
             android:launchMode="singleTask"
             android:theme="@style/CollapsingToolbarTheme">
         </activity>
+        <!-- 警情列表 -->
+        <activity
+            android:name=".view.impl.JingqListActivity"
+            android:theme="@style/CollapsingToolbarTheme"
+            android:launchMode="singleTask" />
+        <!-- 未处理警情详情页 -->
+        <activity
+            android:name=".view.impl.JingqDetailWithUnhandleActivity"
+            android:theme="@style/CollapsingToolbarTheme"
+            android:launchMode="singleTask" />
+        <!-- 已处理警情详情页 -->
+        <activity
+            android:name=".view.impl.JingqDetailWithHandledActivity"
+            android:theme="@style/CollapsingToolbarTheme"
+            android:launchMode="singleTask" />
+        <!-- 警情处理页 -->
+        <activity
+            android:name=".view.impl.JingqHandleActivity"
+            android:theme="@style/CollapsingToolbarTheme"
+            android:launchMode="singleTask" />
+        <!-- 搜索出来的未处理的警情详情页 -->
+        <activity
+            android:name=".view.impl.JingqDetailWithUnhandleActivityWithSearch"
+            android:theme="@style/CollapsingToolbarTheme"
+            android:launchMode="singleTask" />
+        <!-- 警情处理时的图片编辑页面 -->
+        <activity
+            android:name=".view.impl.JingqImageEditActivity"
+            android:theme="@style/CollapsingToolbarTheme"
+            android:launchMode="singleTask" />
+
         <service
             android:name=".service.GPSService"
             android:enabled="true"

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_bgwhite_skgray_radius4"
+    android:orientation="vertical" >
+<include layout="@layout/content_toolbar"></include>
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/ll_album_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="2dp" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_chujing_result_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|center_horizontal"
+                android:orientation="vertical"
+                android:padding="2dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp" >
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        style="@style/common_textview_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="案件类别：" />
+
+                    <Spinner
+                        android:id="@+id/sp_anjian_leibie"
+                        style="@style/common_textview_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_common_spinner"
+                        android:clickable="true"
+                        android:hint="请选择案件类别"
+                        android:spinnerMode="dropdown" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp" >
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        style="@style/common_textview_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="案件类型：" />
+
+                    <Spinner
+                        android:id="@+id/sp_anjian_leixing"
+                        style="@style/common_textview_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_common_spinner"
+                        android:clickable="true"
+                        android:hint="请选择案件类型"
+                        android:spinnerMode="dropdown" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp" >
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        style="@style/common_textview_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="案件细类：" />
+
+                    <Spinner
+                        android:id="@+id/sp_anjian_xilei"
+                        style="@style/common_textview_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_common_spinner"
+                        android:clickable="true"
+                        android:hint="请选择案件细类"
+                        android:spinnerMode="dropdown" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp" >
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        style="@style/common_textview_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="案件处理：" />
+
+                    <Spinner
+                        android:id="@+id/sp_ksxz_ajcl"
+                        style="@style/common_textview_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_common_spinner"
+                        android:clickable="true"
+                        android:hint="快速选择"
+                        android:spinnerMode="dropdown" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_bgwhite_skgray_radius4"
+                    android:orientation="vertical"
+                    android:padding="3dp" >
+
+                    <ScrollView
+                        android:id="@+id/scrollView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical" >
+
+                            <EditText
+                                android:id="@+id/et_chujing_result_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:gravity="top|left"
+                                android:hint="请在此输入案件补充说明..."
+                                android:maxLines="5"
+                                android:minHeight="80dp"
+                                android:textColor="@color/gray_color_3"
+                                android:textSize="@dimen/font_size_second_level" />
+                        </LinearLayout>
+                    </ScrollView>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:id="@+id/rv_media"
+                        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_color_1" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="3dp" >
+
+        <TextView
+            android:id="@+id/tv_confirm_handle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_common_btn_action_bg"
+            android:clickable="true"
+            android:paddingBottom="3dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="3dp"
+            android:text="确认处理"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_add_media"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/selector_common_btn_action_bg"
+            android:clickable="true"
+            android:paddingBottom="3dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="3dp"
+            android:text="添加回传资料"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>
