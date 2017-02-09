@@ -471,6 +471,8 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
                 break;
             case R.id.tv_add_media:
                 ToastTool.getInstance().shortLength(context, "添加图片", true);
+                //==========================
+                //以下是rxGalleryFinal写法,但是引入此模块会导致地图无法加载,故舍弃.
 //                RxGalleryFinal
 //                        .with(JingqHandleActivity.this)
 //                        .image()
@@ -496,6 +498,8 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
 //                            }
 //                        })
 //                        .openGallery();
+                //==========================
+
                 break;
         }
     }

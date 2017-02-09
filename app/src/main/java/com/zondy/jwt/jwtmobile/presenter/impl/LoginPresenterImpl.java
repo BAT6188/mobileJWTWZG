@@ -32,6 +32,7 @@ public class LoginPresenterImpl implements ILoginPresenter{
             @Override
             public void loginSuccess(EntityUser entityUser) {
                 loginView.loginSuccessed(entityUser);
+
             }
 
             @Override

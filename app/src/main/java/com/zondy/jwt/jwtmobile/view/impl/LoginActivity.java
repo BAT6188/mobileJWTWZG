@@ -21,7 +21,6 @@ import com.zondy.jwt.jwtmobile.util.SharedTool;
 import com.zondy.jwt.jwtmobile.util.ToastTool;
 import com.zondy.jwt.jwtmobile.view.ILoginView;
 
-
 import butterknife.BindView;
 
 public class LoginActivity extends BaseActivity implements ILoginView, View.OnClickListener {
@@ -136,6 +135,13 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         entityUser.setPassword(et_pword.getText().toString());//因为服务端没有返回用户密码，此操作为保存密码
         //保存用户信息
         SharedTool.getInstance().saveUserInfo(LoginActivity.this, entityUser);
+
+        ///////////////////////////
+
+        ///////////////////////////
+
+
+
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
         this.finish();
