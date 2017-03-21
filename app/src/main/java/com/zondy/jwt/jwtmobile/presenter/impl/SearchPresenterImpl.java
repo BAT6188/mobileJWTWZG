@@ -47,8 +47,8 @@ public class SearchPresenterImpl implements ISearchPresenter{
     public void queryZHCXList(String layerid,String layername,int orderType,String keyword, double radius, double longitude, double latitude, int nowpage, int pagesize) {
         searchModel.queryZHCXList(context,layerid,layername,orderType,keyword, radius, longitude, latitude, nowpage, pagesize, new IQueryZHCXListCallback() {
             @Override
-            public void querySuccessed(List<EntitySearchResult> allEntitys) {
-                searchZHCXListView.queryZHCXListSuccessed(allEntitys);
+            public void querySuccessed(List<EntitySearchResult> allEntitys,int allpages) {
+                searchZHCXListView.queryZHCXListSuccessed(allEntitys,allpages);
             }
 
             @Override

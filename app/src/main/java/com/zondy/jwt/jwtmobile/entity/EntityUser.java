@@ -121,4 +121,23 @@ public class EntityUser implements Serializable{
     public void setDistanceInterval(String distanceInterval) {
         this.distanceInterval = distanceInterval;
     }
+
+    @Override
+    public String toString() {
+        return "EntityUser{" +
+                "carid='" + carid + '\'' +
+                ", userId='" + userId + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", usertype='" + usertype + '\'' +
+                ", zzjgdm='" + zzjgdm + '\'' +
+                ", zzjgmc='" + zzjgmc + '\'' +
+                ", ctname='" + ctname + '\'' +
+                ", phone='" + phone + '\'' +
+                ", roleId='" + roleId + '\'' +
+                ", ssxq='" + ssxq + '\'' +
+                ", timeInterval='" + timeInterval + '\'' +
+                ", distanceInterval='" + distanceInterval + '\'' +
+                '}';
+    }
 }

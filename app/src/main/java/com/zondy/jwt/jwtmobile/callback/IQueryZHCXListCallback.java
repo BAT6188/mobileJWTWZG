@@ -9,6 +9,6 @@ import java.util.List;
  */
 
 public interface IQueryZHCXListCallback {
-    void querySuccessed(List<EntitySearchResult> allEntitys);
+    void querySuccessed(List<EntitySearchResult> allEntitys,int allpages);
     void queryUnSuccessed(String msg);
 }

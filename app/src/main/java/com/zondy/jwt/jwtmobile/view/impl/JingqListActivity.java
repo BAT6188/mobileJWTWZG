@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
@@ -26,6 +28,7 @@ import com.zondy.jwt.jwtmobile.util.SharedTool;
 import com.zondy.jwt.jwtmobile.util.ToastTool;
 import com.zondy.jwt.jwtmobile.view.IJingqListView;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +62,7 @@ public class JingqListActivity extends BaseActivity implements IJingqListView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         initParam();
         initView();
         initOperator();
@@ -67,7 +71,7 @@ public class JingqListActivity extends BaseActivity implements IJingqListView {
     @Override
     protected void onResume() {
         super.onResume();
-        queryJingqDatas();
+        queryJingqDatas();//jingqclPresenter.queryJingqDatas(jh, simid);
     }
 
     public void initParam() {
@@ -78,9 +82,9 @@ public class JingqListActivity extends BaseActivity implements IJingqListView {
         adapterJingqList = new CommonAdapter<EntityJingq>(context, R.layout.item_jingqcl_jingq, jingqDatas) {
             @Override
             protected void convert(ViewHolder holder, EntityJingq entityJingq, int position) {
-                holder.setText(R.id.tv_title, entityJingq.getBaojdz());
-                holder.setText(R.id.tv_message, entityJingq.getBaojnr());
-                holder.setText(R.id.tv_time, entityJingq.getBaojsj());
+                holder.setText(R.id.tv_title, entityJingq.getBaojdz());//报警地址
+                holder.setText(R.id.tv_message, entityJingq.getBaojnr());//内容
+                holder.setText(R.id.tv_time, entityJingq.getBaojsj());//时间
             }
 
 
@@ -141,11 +145,65 @@ public class JingqListActivity extends BaseActivity implements IJingqListView {
         jingqclPresenter.queryJingqDatas(jh, simid);
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.jingqcl_main,menu);
+        return true;
+    }
+
+    /**
+     * 重写该方法让菜单项里面的icon显示
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if(menu != null){
+            if(menu.getClass().getSimpleName().equals("MenuBuilder")){
+                try{
+                    Method m = menu.getClass().getDeclaredMethod(
+                            "setOptionalIconsVisible", Boolean.TYPE);
+                    m.setAccessible(true);
+                    m.invoke(menu, true);
+                }
+                catch(NoSuchMethodException e){}
+                catch(Exception e){}
+            }
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+//    @Override
+//    public boolean onMenuOpened(int featureId, Menu menu) {
+//        if (featureId == Window.FEATURE_ACTION_BAR && menu != null) {
+//            if (menu.getClass().getSimpleName().equals("MenuBuilder")) {
+//                try {
+//                    Method m = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
+//                    m.setAccessible(true);
+//                    m.invoke(menu, true);
+//                } catch (Exception e) {
+//                }
+//            }
+//        }
+//        return super.onMenuOpened(featureId, menu);
+//    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish();
+                break;
+            case R.id.sos:
+                ToastTool.getInstance().shortLength(this, "一键报警", true);
+                break;
+            case R.id.xiecha:   //进入要案协查列表活动
+                startActivity(JingqXieChaListActivity.createIntent(context));
+                break;
+            case R.id.jingqsb:
+                startActivity(JingqShangBaoActivity.createIntent(context));//进入警情上报页面
                 break;
             default:
                 break;

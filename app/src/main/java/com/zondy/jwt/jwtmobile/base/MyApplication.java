@@ -2,43 +2,58 @@ package com.zondy.jwt.jwtmobile.base;
 
 import android.app.Application;
 import android.text.TextUtils;
-import android.util.Log;
 
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.cache.CacheEntity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.log.LoggerInterceptor;
 import com.zondy.jwt.jwtmobile.global.Constant;
 import com.zondy.jwt.jwtmobile.manager.GPSLocationManager;
 import com.zondy.jwt.jwtmobile.manager.UrlManager;
-import com.zondy.jwt.jwtmobile.util.CommonUtil;
 import com.zondy.jwt.jwtmobile.util.SharedTool;
 
 import java.util.concurrent.TimeUnit;
 
 
+//import io.realm.Realm;
+//import io.realm.RealmConfiguration;
 import okhttp3.OkHttpClient;
-
-import static android.R.string.ok;
 
 /**
  * Created by sheep on 2017/1/3.
- * 2017年02月07日17:43:59 测试
  * 2017年02月07日17:53:56 测试
  */
 
 public class MyApplication extends Application {
     public final static boolean IS_PRODUCT_ENVIRONMENT = true;
     public final static boolean IS_TEST_JINGQLIST = true;
+
     @Override
     public void onCreate() {
         super.onCreate();
-        OkHttpClient okHttpClient=new OkHttpClient.Builder()
-                .addInterceptor(new LoggerInterceptor("sheep",true))
+
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(new LoggerInterceptor("sheep", true))
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)
                 .readTimeout(10000L, TimeUnit.MILLISECONDS)
                 .build();
+
         OkHttpUtils.initClient(okHttpClient);
         initIpAndPort();
-        GPSLocationManager.getInstance(this,10,0).startLocation();//开启GPS定位服务
+        GPSLocationManager.getInstance(this, 10, 0).startLocation();//开启GPS定位服务
+
+//        Realm.init(this);
+//        RealmConfiguration realmConfiguration=new RealmConfiguration.Builder().name("JWTRealm.realm").build();
+//        Realm.setDefaultConfiguration(realmConfiguration);
+
+        //必须调用初始化
+        OkGo.init(this);
+        OkGo.getInstance()
+                .setConnectTimeout(15000)  //全局的连接超时时间
+                .setReadTimeOut(15000)     //全局的读取超时时间
+                .setWriteTimeOut(15000)    //全局的写入超时时间
+                .setCacheTime(CacheEntity.CACHE_NEVER_EXPIRE);
     }
 
     /**
@@ -110,4 +125,5 @@ public class MyApplication extends Application {
         }
 
     }
+
 }

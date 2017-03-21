@@ -1,5 +1,7 @@
 package com.zondy.jwt.jwtmobile.presenter;
 
+import android.app.Activity;
+
 /**
  * Created by ywj on 2017/1/12 0012.
  */
@@ -78,7 +80,7 @@ public interface IJingqHandlePresenter {
      * @param jh
      * @param simid
      */
-    public void queryAllJingqTypes(String jh, String simid);
+    public void queryAllJingqTypes(String jh, String simid, Activity act);
 
     /**
      * 查询所有的处警快速选择
@@ -86,6 +88,74 @@ public interface IJingqHandlePresenter {
      * @param simid
      */
     public void queryAllJingqKuaisclTypes(String jh, String simid);
+
+    /**
+     * 查询协查推送列表
+     * @param jh
+     * @param simid
+     */
+    public void queryXiectsDatas(String jh, String simid,String zzjgdm);
+
+    /**
+     * 推送消息接受确认
+     * @param jingqid
+     * @param jh
+     * @param simid
+     */
+    public void confirmReceiveMsg(String jingqid, String jh, String simid);
+
+
+    /**
+     * 民警反馈警情
+     * @param jingyid
+     * @param jingqid
+     * @param bjlb
+     * @param bjlx
+     * @param bjxl
+     * @param fknr
+     * @param fksj
+     * @param filesPath
+     * @param jh
+     * @param simid
+     */
+    public void feedbackJingq(String jingyid, String jingqid, String bjlb, String bjlx, String bjxl,
+                              String fknr, String fksj, String filesPath, String jh, String simid);
+
+    /**
+     * 查询民警反馈记录
+     * @param jh
+     * @param simid
+
+     */
+    public void queryFeedbackRecords(String jh, String simid);
+
+    /**
+     * 上报警情
+     * @param jh
+     * @param simid
+     * @param bjrxm
+     * @param bjrjh
+     * @param bjsj
+     * @param bjrdh
+     * @param bjdz
+     * @param baojnr
+     * @param bjlb
+     * @param bjlx
+     * @param bjxl
+     * @param longitude
+     * @param latitude
+     * @param filesPath
+     */
+    public void shangbaoJingq(String jh, String simid, String bjrxm, String bjrjh, String bjsj, String bjrdh,
+                              String bjdz, String baojnr, String bjlb, String bjlx, String bjxl, String longitude,
+                              String latitude, String filesPath,Activity act);
+
+    /**
+     * 查询我的上报记录
+     * @param jh
+     * @param simid
+     */
+    public void queryMySubmitRecords(String jh, String simid);
 
 
 }

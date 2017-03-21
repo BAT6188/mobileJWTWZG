@@ -98,7 +98,7 @@ public class JingqDetailWithUnhandleActivity extends BaseActivity implements IJi
 
     public void initView() {
         initActionBar(toolbar, tvTitle, "警情到场");
-        updateJingqView(entityJingq);
+        updateJingqView(entityJingq);//更新警情视图
     }
 
 
@@ -152,7 +152,10 @@ public class JingqDetailWithUnhandleActivity extends BaseActivity implements IJi
         return true;
     }
 
-
+    /**
+     * 重新加载成功
+     * @param jingq
+     */
     @Override
     public void reLoadJingqSuccess(EntityJingq jingq) {
         dismissLoadingDialog();
@@ -166,15 +169,18 @@ public class JingqDetailWithUnhandleActivity extends BaseActivity implements IJi
         ToastTool.getInstance().shortLength(context,e.getMessage(),true);
     }
 
+    /**
+     * 接收警情成功
+     */
     @Override
     public void receiveJingqSuccess() {
         dismissLoadingDialog();
         ToastTool.getInstance().shortLength(context, "接收成功", true);
 
         entityJingq
-                .setState(EntityJingq.HADREAD);
-        tv_accept.setVisibility(View.GONE);
-        tv_reback.setVisibility(View.VISIBLE);
+                .setState(EntityJingq.HADREAD);//已接警
+        tv_accept.setVisibility(View.GONE);//接警按钮不可见
+        tv_reback.setVisibility(View.VISIBLE);//回退按钮可见
     }
 
     @Override
@@ -183,14 +189,17 @@ public class JingqDetailWithUnhandleActivity extends BaseActivity implements IJi
         ToastTool.getInstance().shortLength(context,e.getMessage(),true);
     }
 
+    /**
+     * 到场确认成功
+     */
     @Override
     public void arriveConfirmSuccess() {
         dismissLoadingDialog();
         tv_reback
-                .setVisibility(View.GONE);
+                .setVisibility(View.GONE);//回退按钮不可见
         entityJingq
-                .setState(EntityJingq.HADREACHCONFIRM);
-        startActivity(JingqHandleActivity.createIntent(context,entityJingq));
+                .setState(EntityJingq.HADREACHCONFIRM);//状态为已确认到场
+        startActivity(JingqHandleActivity.createIntent(context,entityJingq));//进入警情处理界面（已到场）
     }
 
     @Override
@@ -200,12 +209,15 @@ public class JingqDetailWithUnhandleActivity extends BaseActivity implements IJi
         ToastTool.getInstance().shortLength(context,e.getMessage(),true);
     }
 
+    /**
+     * 回退警情成功
+     */
     @Override
     public void rollbackJingqSuccess() {
         dismissLoadingDialog();
-        entityJingq.setState(EntityJingq.UNREAD);
-        tv_accept.setVisibility(View.VISIBLE);
-        tv_reback.setVisibility(View.GONE);
+        entityJingq.setState(EntityJingq.UNREAD);//未受理
+        tv_accept.setVisibility(View.VISIBLE);//接警按钮可见
+        tv_reback.setVisibility(View.GONE);//回退按钮不可见
     }
 
     @Override
@@ -224,24 +236,24 @@ public class JingqDetailWithUnhandleActivity extends BaseActivity implements IJi
         String simid = CommonUtil.getDeviceId(context);
         switch (view.getId()) {
             case R.id.tv_reload:
-                    jingqHandlePresenter.reloadJingqWithJingqUnhandle(jingqid,jh,simid);
+                    jingqHandlePresenter.reloadJingqWithJingqUnhandle(jingqid,jh,simid);//重新加载警情
                     showLoadingDialog();
                 break;
             case R.id.tv_reach_confirm:
                 String longitude = "120";
                 String latitude = "31";
-                jingqHandlePresenter.arriveConfirm(jingyid,jingqid,longitude,latitude,jh,simid);
+                jingqHandlePresenter.arriveConfirm(jingyid,jingqid,longitude,latitude,jh,simid);//到场确认
                 showLoadingDialog();
                 break;
             case R.id.tv_accept:
-                jingqHandlePresenter.acceptJingq(jingqid,carid,jh,simid);
+                jingqHandlePresenter.acceptJingq(jingqid,carid,jh,simid);//接收警情
                 showLoadingDialog();
                 break;
             case R.id.tv_reback:
-                jingqHandlePresenter.rollbackJingq(jingqid,jh,simid);
+                jingqHandlePresenter.rollbackJingq(jingqid,jh,simid);//回退警情
                 showLoadingDialog();
                 break;
-            case R.id.btn_search_by_jingqid:
+            case R.id.btn_search_by_jingqid://搜索就重新加载警情
                 String inputJingqid = etJingqid.getText().toString().trim();
                 if(!TextUtils.isEmpty(inputJingqid)){
                 jingqHandlePresenter.reloadJingqWithJingqUnhandle(inputJingqid,jh,simid);

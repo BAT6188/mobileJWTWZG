@@ -6,6 +6,7 @@ import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.zondy.jwt.jwtmobile.R;
@@ -23,9 +24,12 @@ import butterknife.BindView;
 
 public class ScrollActivity extends BaseActivity {
 
+    @BindView(R.id.iv_search_back)
+    ImageView ivSearchBack;
     private MapView mapView;
     private RelativeLayout rlSearch;//顶部查询总布局
     private EditText etSearch;//查询输入栏edittext
+
 
     @Override
     public int setCustomContentViewResourceId() {
@@ -42,11 +46,11 @@ public class ScrollActivity extends BaseActivity {
     private void initParams() {
         rlSearch = (RelativeLayout) findViewById(R.id.rl_search);
         etSearch = (EditText) findViewById(R.id.et_search);
-        mapView= (MapView) findViewById(R.id.mapview);
+        mapView = (MapView) findViewById(R.id.mapview);
     }
 
     private void initView() {
-        mapView.loadFromFile(Environment.getExternalStorageDirectory().getAbsolutePath()+ File.separator+"MapGIS/map/wuhan/wuhan.xml");
+        mapView.loadFromFile(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "MapGIS/map/wuhan/wuhan.xml");
         mapView.setShowNorthArrow(false);
         rlSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +73,12 @@ public class ScrollActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ScrollActivity.this, SearchActivity.class);
                 startActivity(intent);
+            }
+        });
+        ivSearchBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

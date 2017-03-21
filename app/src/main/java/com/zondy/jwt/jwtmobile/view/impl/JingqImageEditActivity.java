@@ -82,7 +82,7 @@ public class JingqImageEditActivity extends BaseActivity implements IJingqImageE
             ImageView iv = new ImageView(context);
             Glide.with(context)
                     .load(s)
-                    .placeholder(R.drawable.ic_aixin)
+//                    .placeholder(R.drawable.ic_aixin)
                     .crossFade()
                     .into(iv);
             views.add(iv);
@@ -135,7 +135,7 @@ public class JingqImageEditActivity extends BaseActivity implements IJingqImageE
     }
 
     public void initView() {
-        initActionBar(toolbar, tvTitle, "警情详情");
+        initActionBar(toolbar, tvTitle, "警情图片详情");
         vpImage.setAdapter(adapterViewPager);
         vpImage.setCurrentItem(currentPageviewIndex);
     }

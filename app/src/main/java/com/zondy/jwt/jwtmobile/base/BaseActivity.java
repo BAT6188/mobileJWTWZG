@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.widget.TextView;
 
+import com.zondy.jwt.jwtmobile.R;
 import com.zondy.jwt.jwtmobile.manager.ActivityCollector;
 
 import butterknife.ButterKnife;
@@ -47,11 +48,12 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     public void initActionBar(Toolbar toolbar, TextView tvTitle, String title) {
         if (toolbar != null) {
+            toolbar.setNavigationIcon(R.drawable.ic_top_back);
             setSupportActionBar(toolbar);
             ActionBar actionBar = getSupportActionBar();
             if (actionBar != null) {
                 actionBar.setTitle("");
-                actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.setDisplayHomeAsUpEnabled(true);//给左上角图标的左边加上一个返回的图标
                 actionBar.setDisplayShowHomeEnabled(false);//是否显示当前程序的图标
             }
         }

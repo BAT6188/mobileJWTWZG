@@ -26,16 +26,21 @@ import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zondy.jwt.jwtmobile.R;
 import com.zondy.jwt.jwtmobile.base.BaseActivity;
+import com.zondy.jwt.jwtmobile.entity.EntitySearchHistory;
 import com.zondy.jwt.jwtmobile.entity.EntityTCFL;
 import com.zondy.jwt.jwtmobile.presenter.ISearchPresenter;
 import com.zondy.jwt.jwtmobile.presenter.impl.SearchPresenterImpl;
+import com.zondy.jwt.jwtmobile.util.ToastTool;
 import com.zondy.jwt.jwtmobile.view.ISearchTCFLView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+//import io.realm.Realm;
 
 public class SearchActivity extends BaseActivity implements ISearchTCFLView {
     @BindView(R.id.btn_more)
@@ -54,7 +59,7 @@ public class SearchActivity extends BaseActivity implements ISearchTCFLView {
     CheckBox cbJiuba;
     @BindView(R.id.cb_dianyingyuan)
     CheckBox cbDianyingyuan;
-    private ISearchPresenter searchPresenter = new SearchPresenterImpl(this, this);
+    private ISearchPresenter searchPresenter = new SearchPresenterImpl(this, this);//构造searchPresenter对象
     private ImageView ivBack;
     private Button btnSearch;
     private ImageView ivCancel;
@@ -62,7 +67,7 @@ public class SearchActivity extends BaseActivity implements ISearchTCFLView {
     private XRecyclerView rvHistory;
     private RelativeLayout btnClearHistory;
     private String searchMC = "";
-
+//    private Realm realm;
 
     //搜索历史假数据
     private List<String> mDatas = new ArrayList<>();
@@ -77,11 +82,18 @@ public class SearchActivity extends BaseActivity implements ISearchTCFLView {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         if (intent != null) {
-            searchMC = intent.getStringExtra("MC");
+            searchMC = intent.getStringExtra("MC");//从ScrollActivity获取搜索名称
         }
         initParams();
         initViews();
         initDatas();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        realm.close();
     }
 
     private void initDatas() {
@@ -100,6 +112,7 @@ public class SearchActivity extends BaseActivity implements ISearchTCFLView {
     }
 
     private void initParams() {
+//        realm=Realm.getDefaultInstance();
         ivBack = (ImageView) findViewById(R.id.iv_search_back);
         btnSearch = (Button) findViewById(R.id.btn_search_confirm);
         ivCancel = (ImageView) findViewById(R.id.iv_search_cancel);
@@ -118,6 +131,7 @@ public class SearchActivity extends BaseActivity implements ISearchTCFLView {
             btnSearch.setVisibility(View.VISIBLE);
             ivCancel.setVisibility(View.VISIBLE);
         }
+//        点击更多进入SearchMoreActivity
         btnMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,12 +139,13 @@ public class SearchActivity extends BaseActivity implements ISearchTCFLView {
                 startActivity(intent);
             }
         });
-        etSearch.addTextChangedListener(new TextWatcher() {
+        etSearch.addTextChangedListener(new TextWatcher() { //搜索框设置字数变化监听
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
 
+//            当字数变化时，若框内文字不为空显示搜索取消和搜索确认按钮
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!TextUtils.isEmpty(etSearch.getText().toString())) {
@@ -150,7 +165,7 @@ public class SearchActivity extends BaseActivity implements ISearchTCFLView {
         rvHistory.setLayoutManager(new LinearLayoutManager(this));
         rvHistory.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         final CommonAdapter<String> commonAdapter = new CommonAdapter<String>(this, R.layout.item_search_history, mDatas) {
-
+//搜索历史子项布局填充
             @Override
             protected void convert(ViewHolder holder, String s, int position) {
 
@@ -219,16 +234,20 @@ public class SearchActivity extends BaseActivity implements ISearchTCFLView {
                 rvHistory.setVisibility(View.GONE);
             }
         });
-        btnSearch.setOnClickListener(new View.OnClickListener() {
+        btnSearch.setOnClickListener(new View.OnClickListener() {   //确认查询按钮点击
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SearchActivity.this, ScrollActivityResult.class);
                 intent.putExtra("MC", ""+etSearch.getText().toString());
-                startActivity(intent);
+                startActivity(intent);//进入ScrollActivityResult活动界面，并携带搜索框内容
             }
         });
     }
 
+    /**
+     * 接口ISearchTCFLView的实现
+     * @param tcfls
+     */
     @Override
     public void queryTCFLSuccessed(List<EntityTCFL> tcfls) {
 
@@ -250,6 +269,18 @@ public class SearchActivity extends BaseActivity implements ISearchTCFLView {
             case R.id.cb_wangba:
                 Intent intentwb=new Intent(SearchActivity.this,ScrollActivityResult.class);
                 intentwb.putExtra("MC","网吧");
+                //realm
+//                Realm realm=Realm.getDefaultInstance();
+//                realm.beginTransaction();
+//                EntitySearchHistory history=realm.createObject(EntitySearchHistory.class);
+                EntitySearchHistory history=new EntitySearchHistory();
+                history.setId("网吧");
+                history.setKeyword("网吧");
+                SimpleDateFormat format=new SimpleDateFormat("yyyy年MM月dd日   HH:mm:ss");
+                Date curDate=new Date(System.currentTimeMillis());
+                String str=format.format(curDate);
+                history.setTime(str);
+                ToastTool.getInstance().shortLength(this,str,true);
                 startActivity(intentwb);
                 break;
             case R.id.cb_xuexiao:

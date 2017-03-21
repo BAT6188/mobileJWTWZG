@@ -166,7 +166,10 @@ public class JingqDetailWithHandledActivity extends BaseActivity implements IJin
         return true;
     }
 
-
+    /**
+     * 重写IJingqDetailWithHandledView
+     * @param jingq
+     */
     @Override
     public void loadJingqSuccess(EntityJingq jingq) {
         dismissLoadingDialog();

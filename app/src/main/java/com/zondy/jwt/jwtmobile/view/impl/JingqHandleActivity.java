@@ -70,19 +70,19 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
     @BindView(R.id.ll_album_container)
     LinearLayout ll_album_container;
     @BindView(R.id.rv_media)
-    RecyclerView rv_media;
+    RecyclerView rv_media;//存放图片资料
 
     EntityJingq entityJingq;
     IJingqHandlePresenter jingqHandlePresenter;
     EntityUser user;
 
-    List<EntityZD> ajlbDatas;
+    List<EntityZD> ajlbDatas;//案件类别字典类型集合
     BaseCommonAdapter<EntityZD> ajlbAdapter;
-    List<EntityZD> ajlxDatas;
+    List<EntityZD> ajlxDatas;//案件类型
     BaseCommonAdapter<EntityZD> ajlxAdapter;
-    List<EntityZD> ajxlDatas;
+    List<EntityZD> ajxlDatas;//案件细类
     BaseCommonAdapter<EntityZD> ajxlAdapter;
-    List<EntityZD> ajclDatas;
+    List<EntityZD> ajclDatas;//案件处理
     BaseCommonAdapter<EntityZD> ajclAdapter;
 
     //    String ajlx = "";
@@ -94,13 +94,13 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
     boolean isAnjlbFirstShow = true;// 是否是第一次显示，是的话下拉框需要需要选中到制定的index
     boolean isAnjlxFistShow = true;// 是否是第一次显示，是的话下拉框需要需要选中到制定的index
     boolean ajxl_flag = true;// 是否是第一次显示，是的话下拉框需要需要选中到制定的index
-    List<EntityMedia> medias;
+    List<EntityMedia> medias;//多媒体实体集合
 
-    List<EntityZD> allJingqTypes;
+    List<EntityZD> allJingqTypes;//所有警情类型
     String result;
     CommonAdapter<String> adapterImages;
     List<String> imageDatas;
-    private final int REQ_CODE_EDIT_IMAGE = 1;
+    private final int REQ_CODE_EDIT_IMAGE = 1;//进入编辑图片活动的请求码
 
     public static Intent createIntent(Context context, EntityJingq jingq) {
         Intent intent = new Intent(context, JingqHandleActivity.class);
@@ -123,7 +123,7 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
     }
 
     public void initParam() {
-        entityJingq = (EntityJingq) getIntent().getSerializableExtra("entityJingq");
+        entityJingq = (EntityJingq) getIntent().getSerializableExtra("entityJingq");//从上一活动获取特定警情实体
         jingqHandlePresenter = new JingqHandlePresenterImpl(this);
         user = SharedTool.getInstance().getUserInfo(context);
 
@@ -134,6 +134,7 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
         ajclDatas = new ArrayList<EntityZD>();
 
         imageDatas = new ArrayList<>();
+        //构造图片URI集合的适配器
         adapterImages = new CommonAdapter<String>(context, R.layout.item_jingq_handled_images, imageDatas) {
             @Override
             protected void convert(ViewHolder holder, String s, int position) {
@@ -144,10 +145,11 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
                         .into((ImageView) holder.getView(R.id.iv_handled_jingq_image));
             }
         };
+        //点击图片子项进入JingqImageEditActivity
         adapterImages.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                String imgPath = adapterImages.getDatas().get(position);
+                String imgPath = adapterImages.getDatas().get(position);//获取子项的图片uri
                 startActivityForResult(JingqImageEditActivity.createIntent(context, adapterImages.getDatas(), position, true), REQ_CODE_EDIT_IMAGE);
 
             }
@@ -160,19 +162,19 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
     }
 
     public void initView() {
-        initActionBar(toolbar, tvTitle, "警情处理");
+        initActionBar(toolbar, tvTitle, "警情到场处理");
         updateJingqView(entityJingq);
 
         rv_media.setLayoutManager(new GridLayoutManager(context, 3));
-        rv_media.setAdapter(adapterImages);
+        rv_media.setAdapter(adapterImages);//为装载图片的recycleview设置适配器
     }
 
 
     public void initOperator() {
         String jh = user.getUserName();
         String simid = CommonUtil.getDeviceId(context);
-        jingqHandlePresenter.queryAllJingqTypes(jh, simid);
-        jingqHandlePresenter.queryAllJingqKuaisclTypes(jh, simid);
+        jingqHandlePresenter.queryAllJingqTypes(jh, simid,this);//查询所有警情类型
+        jingqHandlePresenter.queryAllJingqKuaisclTypes(jh, simid);//查询警情快速处理类型
 
     }
 
@@ -218,8 +220,8 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
                     @Override
                     public void onItemSelected(AdapterView<?> arg0, View arg1,
                                                int arg2, long arg3) {
-                        anjlb = ajlbAdapter.getItem(arg2);
-                        List<EntityZD> lxs = getChildJingqType(allJingqTypes, anjlb);
+                        anjlb = ajlbAdapter.getItem(arg2);//获取案件类别
+                        List<EntityZD> lxs = getChildJingqType(allJingqTypes, anjlb);//根据选中的父字典类型获取子类型集合
 
                         if (lxs != null) {
                             ajlxDatas.clear();
@@ -228,8 +230,8 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
 
 
                             if (isAnjlxFistShow) {// 是否是案件类型第一次显示，是的话需要指定到对应的index
-                                String ajlxMc = entityJingq.getAjlx();
-
+                                String ajlxMc = entityJingq.getAjlx();//从上一活动获取案件类型名称
+//遍历获取案件类型集合中的索引（对应于第一次显示的案件名称）
                                 int ajlxIndex = -1;
                                 for (int i = 0; i < ajlxDatas.size(); i++) {
                                     EntityZD ajlx_tmp = ajlxDatas.get(i);
@@ -244,11 +246,13 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
                                 }
 
                                 isAnjlxFistShow = false;
-                            } else {
+                            }
+//         不是第一次显示，就显示子类型集合中的第一个字典元素
+                            else {
                                 if (lxs != null && lxs.size() > 0) {
 
                                     sp_anjian_leixing.setSelection(0);
-                                    anjlx = ajlxDatas.get(0);
+                                    anjlx = ajlxDatas.get(0);//获取第一个案件类型
                                 } else {
                                     ajlxAdapter.notifyDataSetChanged();
                                 }
@@ -272,13 +276,13 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
                                                int arg2, long arg3) {
                         EntityZD spOption = ajlxAdapter.getItem(arg2);
 
-                        List<EntityZD> xls = getChildJingqType(allJingqTypes, anjlx);
+                        List<EntityZD> xls = getChildJingqType(allJingqTypes, anjlx);//根据案件类型获取细类集合
 
                         if (xls != null) {
                             ajxlDatas.clear();
                             ajxlDatas.addAll(xls);
                             ajxlAdapter.notifyDataSetChanged();
-
+//如果细类第一次显示
                             if (ajxl_flag) {
                                 String ajxl = entityJingq.getAjxl();
 
@@ -296,7 +300,9 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
                                 }
 
                                 ajxl_flag = false;
-                            } else {
+                            }
+//                            如果不是第一次显示
+                            else {
                                 if (xls != null && xls.size() > 0) {
                                     sp_anjian_xilei.setSelection(0);
                                     anjxl = ajxlDatas.get(0);
@@ -384,12 +390,14 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
 
     }
 
-
+    /**
+     * 重写jingqHandle警情到场处理（提交警情）里面view的方法
+     */
     @Override
     public void handleJingqSuccess() {
 
         ToastTool.getInstance().shortLength(context, "处理成功", true);
-        startActivity(JingqListActivity.createIntent(context));
+        startActivity(JingqListActivity.createIntent(context));//进入警情未处理列表活动
         this.finish();
     }
 
@@ -398,6 +406,7 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
         ToastTool.getInstance().shortLength(context, "处理失败," + e.getMessage(), true);
     }
 
+//    重写queryAllJingqTypes里面view的方法
     @Override
     public void updateJingqTypes(List<EntityZD> jignqtypes) {
         if (jignqtypes != null
@@ -435,6 +444,10 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
         }
     }
 
+    /**
+     * 重写queryAllJingqKuaisclTypes里面View的方法
+     * @param jignqKuaiscltypes
+     */
     @Override
     public void updateJingqKuaisclTypes(List<EntityZD> jignqKuaiscltypes) {
         ajclDatas.clear();
@@ -442,6 +455,10 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
         ajclAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * 点击监听
+     * @param view
+     */
     @OnClick({R.id.tv_confirm_handle, R.id.tv_add_media})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -449,13 +466,13 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
                 String jingyid = user.getUserId();
                 String jingqid = entityJingq.getJingqid() + "";
                 String filesPath = entityJingq.getFilesPath();
-                EntityZD chuljgZD = (EntityZD) sp_ksxz_ajcl.getSelectedItem();
+                EntityZD chuljgZD = (EntityZD) sp_ksxz_ajcl.getSelectedItem();//处警结果字典获取
                 final String chuljg = chuljgZD == null ? "" : chuljgZD.getMc();
-                String chuljgms = et_chujing_result_content.getText()
+                String chuljgms = et_chujing_result_content.getText()//处警结果描述
                         .toString().trim();
                 String ajlb = "-1";
                 if (anjlb != null) {
-                    ajlb = anjlb.getBm();
+                    ajlb = anjlb.getBm();//获取案件类别编码
                 }
                 String ajlx = "-1";
                 if (anjlx != null) {
@@ -467,7 +484,7 @@ public class JingqHandleActivity extends BaseActivity implements IJingqhandleVie
                 }
                 String jh = user.getUserName();
                 String simid = CommonUtil.getDeviceId(context);
-                jingqHandlePresenter.jingqHandle(jingyid, jingqid, chuljg, ajlb, ajlx, ajxl, chuljgms, filesPath, jh, simid);
+                jingqHandlePresenter.jingqHandle(jingyid, jingqid, chuljg, ajlb, ajlx, ajxl, chuljgms, filesPath, jh, simid);//提交警情，并回到警情未处理列表
                 break;
             case R.id.tv_add_media:
                 ToastTool.getInstance().shortLength(context, "添加图片", true);

@@ -10,6 +10,7 @@ public class EntitySearchResult {
     private String dz;
     private String distance;
     private String rs;
+    private String dmtlj;
 
     public EntitySearchResult() {
 
@@ -20,6 +21,14 @@ public class EntitySearchResult {
         this.dz = dz;
         this.distance = jl;
         this.rs = rs;
+    }
+
+    public String getDmtlj() {
+        return dmtlj;
+    }
+
+    public void setDmtlj(String dmtlj) {
+        this.dmtlj = dmtlj;
     }
 
     public int getImageResourceID() {

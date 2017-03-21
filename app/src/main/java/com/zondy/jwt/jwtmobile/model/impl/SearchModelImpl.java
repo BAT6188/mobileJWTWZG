@@ -33,9 +33,12 @@ import static android.R.attr.radius;
  */
 
 public class SearchModelImpl implements ISearchModel{
+    private int allpages;//为了分页，出此下策，以后有时间优化可改
     @Override
     public void queryZHCXList(Context context, String layerid,String layername,int orderType,String keyword, double radius, double longitude, double latitude, int nowpage, int pagesize,
                               final IQueryZHCXListCallback queryZHCXListCallback) {
+//        SharedTool.getInstance().saveSearchHistory(context,keyword);
+
         String url= UrlManager.getSERVER()+UrlManager.queryZHCXList;
         JSONObject param=new JSONObject();
         try {
@@ -65,7 +68,7 @@ public class SearchModelImpl implements ISearchModel{
                     JSONObject object=new JSONObject(string);
                     int resultCode=object.optInt("result");
                     String msg=object.optString("message");
-
+                    allpages=object.optInt("allpages");
                     switch (resultCode){
                         case 1:
                             List<EntitySearchResult> allEntitys=new ArrayList<EntitySearchResult>();
@@ -97,7 +100,7 @@ public class SearchModelImpl implements ISearchModel{
                         queryZHCXListCallback.queryUnSuccessed(msg);
                     }else {
                         List<EntitySearchResult> allEntitys= (List<EntitySearchResult>) response;
-                        queryZHCXListCallback.querySuccessed(allEntitys);
+                        queryZHCXListCallback.querySuccessed(allEntitys,allpages);
                     }
                 }
             });

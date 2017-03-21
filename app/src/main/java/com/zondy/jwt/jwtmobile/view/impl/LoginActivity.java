@@ -3,6 +3,7 @@ package com.zondy.jwt.jwtmobile.view.impl;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -37,7 +38,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     RelativeLayout ll_container;
     IpSetManager ipSetManager;
     IipSetListener ipSetListener;
-
+//实例化IloginPresenter接口
     ILoginPresenter loginPresenter = new LoginPresenterImpl(this);
 
     @Override
@@ -97,7 +98,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                     return;
                 }
                 String deviceId = CommonUtil.getDeviceId(context);
-                loginPresenter.login(userName, password, deviceId);
+                loginPresenter.login(userName, password, deviceId);//调用业务逻辑
                 break;
         }
     }
@@ -129,13 +130,13 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
 
     }
 
-
+//重写ILoginView方法，此处是视图逻辑
     @Override
     public void loginSuccessed(EntityUser entityUser) {
         entityUser.setPassword(et_pword.getText().toString());//因为服务端没有返回用户密码，此操作为保存密码
         //保存用户信息
         SharedTool.getInstance().saveUserInfo(LoginActivity.this, entityUser);
-
+//        Log.d("wuzhengguan",entityUser.toString());
         ///////////////////////////
 
         ///////////////////////////

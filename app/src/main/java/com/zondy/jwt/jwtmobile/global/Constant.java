@@ -1,5 +1,9 @@
 package com.zondy.jwt.jwtmobile.global;
 
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.CacheControl;
+
 /**
  * Created by sheep on 2017/1/9.
  */
@@ -17,5 +21,10 @@ public class Constant {
     public static final String USER_SHARED_FILE = "user_shared_file";
 
     //获取字典数据集合时指定的字典类型
-    public static final String ZDLX_ZZJG="组织机构";
+    public static final String ZDLX_ZZJG = "组织机构";
+
+    public static final CacheControl FORCE_CACHE = new CacheControl.Builder()
+            .onlyIfCached()
+            .maxStale(Integer.MAX_VALUE, TimeUnit.SECONDS)
+            .build();
 }

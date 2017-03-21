@@ -9,6 +9,6 @@ import java.util.List;
  */
 
 public interface ISearchZHCXListView {
-    void queryZHCXListSuccessed(List<EntitySearchResult> searchResults);
+    void queryZHCXListSuccessed(List<EntitySearchResult> searchResults,int allpages);
     void queryZHCXListUnSuccessed(String msg);
 }

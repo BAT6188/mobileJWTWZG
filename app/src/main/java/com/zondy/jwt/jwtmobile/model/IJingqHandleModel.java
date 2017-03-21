@@ -2,12 +2,18 @@ package com.zondy.jwt.jwtmobile.model;
 
 import com.zondy.jwt.jwtmobile.callback.IAcceptJingqCallback;
 import com.zondy.jwt.jwtmobile.callback.IArriveConfirmCallback;
+import com.zondy.jwt.jwtmobile.callback.IConfirmReceiveMsgCallBack;
 import com.zondy.jwt.jwtmobile.callback.IJingqHandleCallback;
+import com.zondy.jwt.jwtmobile.callback.IJingqShangbaoCallback;
 import com.zondy.jwt.jwtmobile.callback.IQueryAllJingqKuaisclTypesCallback;
 import com.zondy.jwt.jwtmobile.callback.IQueryAllJingqTypesCallback;
+import com.zondy.jwt.jwtmobile.callback.IQueryFeedbackRecordCallback;
 import com.zondy.jwt.jwtmobile.callback.IQueryJinqDatasCallback;
+import com.zondy.jwt.jwtmobile.callback.IQueryMySubmitRecordsCallback;
+import com.zondy.jwt.jwtmobile.callback.IQueryXiectsDatasCallback;
 import com.zondy.jwt.jwtmobile.callback.IReloadJingqCallback;
 import com.zondy.jwt.jwtmobile.callback.IRollbackJingqCallback;
+import com.zondy.jwt.jwtmobile.callback.IYaoAnFeedbackCallBack;
 
 /**
  * Created by ywj on 2017/1/12 0012.
@@ -84,5 +90,89 @@ public interface IJingqHandleModel {
      * @param simid
      */
     public void queryAllJingqTypes(String jh, String simid, IQueryAllJingqTypesCallback queryAllJingqTypesCallback);
+
+    /**
+     * 获取所有警情快速处理类型
+     * @param jh
+     * @param simid
+     * @param queryAllJingqKuaisclTypesCallback
+     */
         public void queryAllJingqKuaisclTypes(String jh, String simid, IQueryAllJingqKuaisclTypesCallback queryAllJingqKuaisclTypesCallback);
+
+    /**
+     * 查询协查推送列表
+     * @param jh
+     * @param simid
+     * @param zzjgdm
+     * @param queryXiectsDatasCallback
+     */
+        public void queryXiectsDatas(String jh, String simid, String zzjgdm,IQueryXiectsDatasCallback queryXiectsDatasCallback);
+
+    /**
+     * 推送消息接受确认
+     * @param jingqid
+     * @param jh
+     * @param simid
+     * @param confirmReceiveMsgCallBack
+     */
+    public void confirmReceiveMsg(String jingqid, String jh, String simid, IConfirmReceiveMsgCallBack confirmReceiveMsgCallBack);
+
+    /**
+     * 警员反馈警情给中心
+     * @param jingyid
+     * @param jingqid
+     * @param bjlb
+     * @param bjlx
+     * @param bjxl
+     * @param fknr
+     * @param fksj
+     * @param filesPath
+     * @param jh
+     * @param simid
+     */
+    public void FeedbackJingq(String jingyid, String jingqid, String bjlb, String bjlx, String bjxl, String fknr, String fksj, String filesPath,
+                              String jh, String simid, IYaoAnFeedbackCallBack yaoAnFeedbackCallBack);
+
+
+    /**
+     * 查询警员的反馈记录
+     * @param jh
+     * @param simid
+
+     * @param queryFeedbackRecordCallback
+     */
+    public void queryFeedbackRecord(String jh, String simid,IQueryFeedbackRecordCallback queryFeedbackRecordCallback);
+
+    /**
+     *上报警情
+     * @param jh
+     * @param simid
+     * @param bjrxm
+     * @param bjrjh
+     * @param bjsj
+     * @param bjrdh
+     * @param bjdz
+     * @param baojnr
+     * @param bjlb
+     * @param bjlx
+     * @param bjxl
+     * @param longitude
+     * @param latitude
+     * @param filesPath
+     * @param jingqShangbaoCallback
+     */
+    public void shangbaoJingq(String jh, String simid, String bjrxm, String bjrjh,String bjsj,String bjrdh,String bjdz, String baojnr,String bjlb, String bjlx, String bjxl,
+                             String longitude, String latitude, String filesPath, IJingqShangbaoCallback jingqShangbaoCallback);
+
+
+    /**
+     * 查询我的上报记录列表
+     * @param jh
+     * @param simid
+     * @param queryMySubmitRecordsCallback
+     */
+    public void queryMySubmitRecords(String jh, String simid, IQueryMySubmitRecordsCallback queryMySubmitRecordsCallback);
+
+
+
 }

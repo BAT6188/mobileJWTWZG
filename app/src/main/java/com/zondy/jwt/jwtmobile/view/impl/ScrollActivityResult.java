@@ -20,6 +20,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yinglan.scrolllayout.ScrollLayout;
@@ -49,10 +50,11 @@ import butterknife.BindView;
  */
 
 public class ScrollActivityResult extends BaseActivity implements ISearchZHCXListView {
-    @BindView(R.id.scrollresults_mapview)
+   @BindView(R.id.scrollresults_mapview)
     MapView mapview;
     private ISearchPresenter searchPresenter = new SearchPresenterImpl(this, this);
     private double radius = 10;//半径，单位千米
+    private int allpages;//分页查询总页数
     private int nowpage = 1;//分页页码，首次查询为1
     private int pagesize = 10;//每页显示条数，默认为10
     private double longitude = 114.980164;//经度
@@ -80,14 +82,14 @@ public class ScrollActivityResult extends BaseActivity implements ISearchZHCXLis
     private RelativeLayout rlPopupFujin;
     private RelativeLayout rlPopupPaixu;
     private RelativeLayout rlPopupShaixuan;
-    private LinearLayout llFujinXuanzhong;
-    private LinearLayout llFujinWeixuan;
+    private LinearLayout llFujinXuanzhong;//选中状态的附近框
+    private LinearLayout llFujinWeixuan;//未选状态的附近框
     private LinearLayout llPaixuXuanzhong;
     private LinearLayout llPaixuWeixuan;
     private LinearLayout llShaixuanWeixuan;
     private LinearLayout llShaixuanXuanzhong;
     private ScrollLayout mScrollLayout;//抽屉滑动效果的总体布局
-    private LinearLayout ll_foot;//底部抽屉头部的总布局
+    private LinearLayout ll_foot;//底部抽屉头部的总布局，显示相关结果的数量
     private ScrollLayout.OnScrollChangedListener mOnScrollChangedListener = new ScrollLayout.OnScrollChangedListener() {
         @Override
         public void onScrollProgressChanged(float currentProgress) {
@@ -182,10 +184,11 @@ public class ScrollActivityResult extends BaseActivity implements ISearchZHCXLis
     }
 
     private void initView() {
-        mapview.loadFromFile(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "MapGIS/map/wuhan/wuhan.xml");
-        mapview.setShowNorthArrow(false);
+       mapview.loadFromFile(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "MapGIS/map/wuhan/wuhan.xml");
+       mapview.setShowNorthArrow(false);
 //        longitude= Double.parseDouble(SharedTool.getInstance().getLocationInfo(this).getLongitude());
 //        latitude= Double.parseDouble(SharedTool.getInstance().getLocationInfo(this).getLatitude());
+//        调用searchPresenter查询
         searchPresenter.queryZHCXList(layerid, layername, orderType,searchMC, radius, longitude, latitude, nowpage, pagesize);
         tvSearchResultsTopMc.setText(searchMC);
         tvSearchTopMc.setText(searchMC);
@@ -200,12 +203,14 @@ public class ScrollActivityResult extends BaseActivity implements ISearchZHCXLis
         mScrollLayout.setOnScrollChangedListener(mOnScrollChangedListener);
         mScrollLayout.setToOpen();
         mScrollLayout.getBackground().setAlpha(0);
+//        设置搜索结果全屏页时，点击名称监听，会把scrolllayout滑向底部
         tvSearchResultsTopMc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mScrollLayout.scrollToExit();
             }
         });
+//        设置搜索结果页，搜索框名称点击监听，会返回 SearchActivity
         tvSearchTopMc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -213,6 +218,7 @@ public class ScrollActivityResult extends BaseActivity implements ISearchZHCXLis
                 startActivity(intent);
             }
         });
+//        点击搜索数量时会打开scrolllayout
         ll_foot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -224,13 +230,14 @@ public class ScrollActivityResult extends BaseActivity implements ISearchZHCXLis
             public void onClick(View v) {
                 finish();
             }
-        });
+        });//返回上一活动
         ivSearchResultsTopBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+//        点击搜索结果页的取消，会进入ScrollActivity
         ivSearchTopCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -256,8 +263,8 @@ public class ScrollActivityResult extends BaseActivity implements ISearchZHCXLis
         });
         rlPopupFujin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                View layout = ScrollActivityResult.this.getLayoutInflater().inflate(R.layout.pop_scrollresults, null);
+            public void onClick(View v) {   //点击附近
+                View layout = ScrollActivityResult.this.getLayoutInflater().inflate(R.layout.pop_scrollresults, null);//点击附近弹出的布局，是一个recycleview
                 List<String> mDatas = new ArrayList<String>();
                 mDatas.add("默认");
                 mDatas.add("500米");
@@ -265,6 +272,7 @@ public class ScrollActivityResult extends BaseActivity implements ISearchZHCXLis
                 mDatas.add("2000米");
                 mDatas.add("5000米");
                 mDatas.add("全市");
+//                构造填充筛选条件子项布局的适配器
                 CommonAdapter<String> commonAdapter = new CommonAdapter<String>(ScrollActivityResult.this, R.layout.item_scrollresults_shaixuan, mDatas) {
                     @Override
                     protected void convert(ViewHolder holder, String s, int position) {
@@ -288,10 +296,10 @@ public class ScrollActivityResult extends BaseActivity implements ISearchZHCXLis
                 window.setFocusable(true);
                 window.setOutsideTouchable(true);
                 window.update();
-                window.showAsDropDown(rlShaixuan);
+                window.showAsDropDown(rlShaixuan);//设置弹出的窗口在相对布局rlShaixuan下面
                 window.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
-                    public void onDismiss() {
+                    public void onDismiss() {//设置dismiss窗口时，切换为未选中状态
                         llFujinWeixuan.setVisibility(View.VISIBLE);
                         llFujinXuanzhong.setVisibility(View.GONE);
                     }
@@ -322,13 +330,13 @@ public class ScrollActivityResult extends BaseActivity implements ISearchZHCXLis
                         holder.setText(R.id.tv_item_scrollresults_shaixuan, s);
                     }
                 };
-                RecyclerView rvPopupFujin = (RecyclerView) layout.findViewById(R.id.rv_item_pop);
+                RecyclerView rvPopupPaixu = (RecyclerView) layout.findViewById(R.id.rv_item_pop);
                 LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(ScrollActivityResult.this);
                 linearLayoutManager1.setOrientation(LinearLayoutManager.VERTICAL);
-                rvPopupFujin.setLayoutManager(linearLayoutManager1);
-                rvPopupFujin.setAdapter(commonAdapter);
-                rvPopupFujin.addItemDecoration(new DividerItemDecoration(ScrollActivityResult.this, DividerItemDecoration.VERTICAL));
-                final PopupWindow window = new PopupWindow(layout, width, 280);
+                rvPopupPaixu.setLayoutManager(linearLayoutManager1);
+                rvPopupPaixu.setAdapter(commonAdapter);
+                rvPopupPaixu.addItemDecoration(new DividerItemDecoration(ScrollActivityResult.this, DividerItemDecoration.VERTICAL));
+                final PopupWindow window = new PopupWindow(layout, width, 280);//构造popwindow里面的内容布局
                 window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
                 window.setFocusable(true);
                 window.setOutsideTouchable(true);
@@ -349,11 +357,13 @@ public class ScrollActivityResult extends BaseActivity implements ISearchZHCXLis
                 commonAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                        if((position+1)==orderType){
+                        if((position+1)==orderType){//如果点击了默认的排序方式（距离）
                             window.dismiss();
                             return;
                         }else{
-                            orderType=(position+1);
+                            orderType=(position+1);//排序方式变为2,（时间），就网络查询。
+                            nowpage=1;
+                            pagesize=10;
                             searchPresenter.queryZHCXList(layerid, layername, orderType,searchMC, radius, longitude, latitude, nowpage, pagesize);
                             flag=1;
                             window.dismiss();
@@ -390,12 +400,12 @@ public class ScrollActivityResult extends BaseActivity implements ISearchZHCXLis
                         holder.setText(R.id.tv_item_scrollresults_shaixuan, s);
                     }
                 };
-                RecyclerView rvPopupFujin = (RecyclerView) layout.findViewById(R.id.rv_item_pop);
+                RecyclerView rvPopupShaixuan = (RecyclerView) layout.findViewById(R.id.rv_item_pop);
                 LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(ScrollActivityResult.this);
                 linearLayoutManager1.setOrientation(LinearLayoutManager.VERTICAL);
-                rvPopupFujin.setLayoutManager(linearLayoutManager1);
-                rvPopupFujin.setAdapter(commonAdapter);
-                rvPopupFujin.addItemDecoration(new DividerItemDecoration(ScrollActivityResult.this, DividerItemDecoration.VERTICAL));
+                rvPopupShaixuan.setLayoutManager(linearLayoutManager1);
+                rvPopupShaixuan.setAdapter(commonAdapter);
+                rvPopupShaixuan.addItemDecoration(new DividerItemDecoration(ScrollActivityResult.this, DividerItemDecoration.VERTICAL));
                 PopupWindow window = new PopupWindow(layout, width, 550);
                 window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
                 window.setFocusable(true);
@@ -417,20 +427,22 @@ public class ScrollActivityResult extends BaseActivity implements ISearchZHCXLis
             }
         });
     }
-
+//重写ISearchZHCXListView方法
     @Override
-    public void queryZHCXListSuccessed(List<EntitySearchResult> searchResults) {
-        if(flag==0){
-            if (nowpage > 1) {
+    public void queryZHCXListSuccessed(List<EntitySearchResult> searchResults,int allpages) {
+        if(flag==0){//未通过排序
+            if (nowpage > 1) {//如果分页码大于1（用户下拉加载了新的数据）
                 mDatas.addAll(searchResults);
                 tvFootMc.setText("共找到\"" + searchMC + "\"相关" + mDatas.size() + "个结果");
                 adapter.notifyDataSetChanged();
-            } else {
+            } else {//如果当前是第一页
                 mDatas.addAll(searchResults);
                 tvFootMc.setText("共找到\"" + searchMC + "\"相关" + mDatas.size() + "个结果");
-                loadSearchResultsList();
+                this.allpages=allpages;//分页查询总页数
+                loadSearchResultsList();//设置XRecyclerView里面的外观和加载更多监听
             }
         }else if(flag==1){
+            this.allpages=allpages;
             mDatas.clear();
             mDatas.addAll(searchResults);
             adapter.notifyDataSetChanged();
@@ -453,7 +465,7 @@ public class ScrollActivityResult extends BaseActivity implements ISearchZHCXLis
         mXRecyclerView.setRefreshProgressStyle(ProgressStyle.Pacman);
         mXRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.Pacman);
         mXRecyclerView.setPullRefreshEnabled(false);
-//        mXRecyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+//      mXRecyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         adapter = new CommonAdapter<EntitySearchResult>(this, R.layout.item_scrollresults, mDatas) {
             @Override
             protected void convert(ViewHolder holder, EntitySearchResult entitySearchResult, int position) {
@@ -463,6 +475,9 @@ public class ScrollActivityResult extends BaseActivity implements ISearchZHCXLis
             @Override
             public void convert(ViewHolder holder, EntitySearchResult entitySearchResult) {
                 holder.setImageResource(R.id.iv_item_scrollresults, R.drawable.ic_zanwutupian);
+                String dmtlj=entitySearchResult.getDmtlj().split(",")[0];
+                String dmtljCS=dmtlj.replace("61.183.129.187:4040","192.168.9.188:8080");
+                Glide.with(ScrollActivityResult.this).load(dmtljCS).into((ImageView) holder.getView(R.id.iv_item_scrollresults));//加载网络图片
                 holder.setText(R.id.tv_item_scrollresults_mc, entitySearchResult.getMc());
                 holder.setText(R.id.tv_item_scrollresults_dz, entitySearchResult.getDz());
                 String distance = entitySearchResult.getDistance();
@@ -477,7 +492,8 @@ public class ScrollActivityResult extends BaseActivity implements ISearchZHCXLis
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                 Intent intent = new Intent(ScrollActivityResult.this, SearchResultsItemActivity.class);
                 intent.putExtra("NAME", mDatas.get(position - 1).getMc());
-                intent.putExtra("IMAGE_ID", mDatas.get(position - 1).getImageResourceID());
+                intent.putExtra("DZ",mDatas.get(position-1).getDz());
+                intent.putExtra("dmtlj",mDatas.get(position-1).getDmtlj());
                 startActivity(intent);
             }
 
@@ -487,7 +503,8 @@ public class ScrollActivityResult extends BaseActivity implements ISearchZHCXLis
             }
         });
         mXRecyclerView.setAdapter(adapter);
-        mXRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
+
+        mXRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {//设置上滑载入监听
             @Override
             public void onRefresh() {
                 new Handler().postDelayed(new Runnable() {
@@ -503,9 +520,15 @@ public class ScrollActivityResult extends BaseActivity implements ISearchZHCXLis
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        nowpage = nowpage + 1;
-                        searchPresenter.queryZHCXList(layerid, layername, orderType,searchMC, radius, longitude, latitude, nowpage, pagesize);
-                        mXRecyclerView.loadMoreComplete();
+                        if(nowpage<allpages){
+                            nowpage = nowpage + 1;
+                            searchPresenter.queryZHCXList(layerid, layername, orderType,searchMC, radius, longitude, latitude, nowpage, pagesize);
+                            mXRecyclerView.loadMoreComplete();
+                        }else {
+                            ToastTool.getInstance().shortLength(ScrollActivityResult.this,"当前区域暂无更多相关结果",true);
+                            mXRecyclerView.loadMoreComplete();
+                        }
+
                     }
                 }, 2000);
             }
