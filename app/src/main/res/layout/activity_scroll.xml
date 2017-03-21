@@ -12,6 +12,7 @@
         >
     </com.zondy.mapgis.android.mapview.MapView>
 
+
     <RelativeLayout
         android:id="@+id/rl_search"
         android:layout_width="match_parent"
@@ -28,10 +29,27 @@
             android:id="@+id/et_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="14dp"
+            android:layout_marginLeft="35dp"
             android:background="@null"
             android:hint="查找酒店、美食、加油站等"/>
-
+        <ImageView
+            android:id="@+id/iv_search_back"
+            android:layout_width="25dp"
+            android:layout_height="22dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_huijiantou"/>
+        <!--<RelativeLayout-->
+            <!--android:layout_width="2dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_marginLeft="25dp"-->
+            <!--android:background="@color/gray_color_0"-->
+            <!--android:layout_height="match_parent">-->
+        <!--</RelativeLayout>-->
         <ImageView
             android:id="@+id/iv_search"
             android:layout_width="22dp"

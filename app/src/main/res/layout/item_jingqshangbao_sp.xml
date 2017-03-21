@@ -4,6 +4,9 @@
     style="@style/common_textview_style"
     android:layout_height="wrap_content"
     android:padding="10dp"
-    android:gravity="left|center_vertical"
+    android:gravity="right|center_vertical"
     android:text="TextView"
+    android:textSize="18sp"
+    android:textColor="@color/gray_color_3"
+    android:textStyle="bold"
     />

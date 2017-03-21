@@ -54,17 +54,7 @@
             android:theme="@style/CollapsingToolbarTheme">
         </activity>
         <activity
-            android:name=".view.impl.SearchActivityOld"
-            android:launchMode="singleTop"
-            android:theme="@style/CollapsingToolbarTheme">
-        </activity>
-        <activity
             android:name=".view.impl.ScrollActivityResult"
-            android:launchMode="singleTask"
-            android:theme="@style/CollapsingToolbarTheme">
-        </activity>
-        <activity
-            android:name=".view.impl.ScrollActivityResultOld"
             android:launchMode="singleTask"
             android:theme="@style/CollapsingToolbarTheme">
         </activity>
@@ -134,7 +124,7 @@
             android:name=".view.impl.JingqHandleActivity"
             android:theme="@style/CollapsingToolbarTheme"
             android:launchMode="singleTask" />
-        <!-- 搜索出来的未处理的警情详情页 -->
+        <!-- 搜索出来的未处理的警情详情页，与未处理的警情详情页一致 -->
         <activity
             android:name=".view.impl.JingqDetailWithUnhandleActivityWithSearch"
             android:theme="@style/CollapsingToolbarTheme"
@@ -144,7 +134,46 @@
             android:name=".view.impl.JingqImageEditActivity"
             android:theme="@style/CollapsingToolbarTheme"
             android:launchMode="singleTask" />
-
+        <!--协查推送列表页面-->
+        <activity
+            android:name=".view.impl.JingqXieChaListActivity"
+            android:theme="@style/CollapsingToolbarTheme"
+            android:launchMode="singleTask"/>
+        <!--协查数据详情页-->
+        <activity
+            android:name=".view.impl.JingqXieChaDetailActivity"
+            android:theme="@style/CollapsingToolbarTheme"
+            android:launchMode="singleTask"/>
+        <!--要案反馈页面-->
+        <activity
+            android:name=".view.impl.YaoAnFanKuiActivity"
+            android:theme="@style/CollapsingToolbarTheme"
+            android:launchMode="singleTask"/>
+        <!--反馈记录列表页面-->
+        <activity
+            android:name=".view.impl.FeedbackRecordsActivity"
+            android:theme="@style/CollapsingToolbarTheme"
+            android:launchMode="singleTask"/>
+        <!--反馈记录详情页面-->
+        <activity
+            android:name=".view.impl.RecordDetailActivity"
+            android:theme="@style/CollapsingToolbarTheme"
+            android:launchMode="singleTask"/>
+        <!--警情上报-->
+        <activity
+            android:name=".view.impl.JingqShangBaoActivity"
+            android:theme="@style/CollapsingToolbarTheme"
+            android:launchMode="singleTask"/>
+        <!--我的上报页面-->
+        <activity
+            android:name=".view.impl.MyJingqSubmitActivity"
+            android:theme="@style/CollapsingToolbarTheme"
+            android:launchMode="singleTask"/>
+        <!--我的上报详情页面-->
+        <activity
+            android:name=".view.impl.SubmitDetailActivity"
+            android:theme="@style/CollapsingToolbarTheme"
+            android:launchMode="singleTask"/>
         <service
             android:name=".service.GPSService"
             android:enabled="true"

@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f3f3f3">
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/ll_above">
+    <include layout="@layout/content_toolbar"
+
+      ></include>
+</LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:background="#FAF7F2"
+        android:visibility="visible"
+        android:scrollbars="none">
+
+    <LinearLayout
+
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/ll_contain1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                   android:id="@+id/tv_anjian_leixing1"
+                    android:text="案件类型："
+                    android:textColor="#000000"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@+id/tv_anjian_leixing1"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_anjian_leixing"
+                        android:layout_gravity="right"
+                        android:layout_centerVertical="true"
+                        android:text="抢夺>抢夺钱财>活动时交换机和"
+                       />
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_color_2">
+
+            </View>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_baojing_shijian1"
+                    android:text="报警时间："
+                    android:textColor="#000000"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_baojing_shijian1"
+                    android:layout_alignTop="@+id/tv_baojing_shijian1"
+                    android:id="@+id/tv_baojing_shijian"
+                    android:layout_marginLeft="60dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:text="2017-2-27 18:56:45"
+                   />
+
+
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_color_2">
+
+            </View>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_baojingren1"
+                    android:text="报警人："
+                    android:textColor="#000000"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_baojingren1"
+                    android:layout_alignTop="@+id/tv_baojingren1"
+                    android:id="@+id/tv_baojingren"
+                    android:layout_marginLeft="60dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:text="王大崔"
+                    />
+
+
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_color_2">
+
+            </View>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_baojing_dianhua1"
+                    android:text="报警电话："
+                    android:textColor="#000000"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_baojing_dianhua1"
+                    android:layout_alignTop="@+id/tv_baojing_dianhua1"
+                    android:id="@+id/tv_baojing_dianhua"
+                    android:layout_marginLeft="60dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:text="15071297632"
+                    />
+
+
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_color_2">
+
+            </View>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_jiejing_shijian1"
+                    android:text="接警时间："
+                    android:textColor="#000000"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_jiejing_shijian1"
+                    android:layout_alignTop="@+id/tv_jiejing_shijian1"
+                    android:id="@+id/tv_jiejing_shijian"
+                    android:layout_marginLeft="60dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:text="2017-2-27 19:56:45"
+                   />
+
+
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_color_2">
+
+            </View>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_jiejingren1"
+                    android:text="接警人："
+                    android:textColor="#000000"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_jiejingren1"
+                    android:layout_alignTop="@+id/tv_jiejingren1"
+                    android:id="@+id/tv_jiejingren"
+                    android:layout_marginLeft="60dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:text="李大柱"
+                   />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_color_2">
+
+            </View>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_jiejing_dianhua1"
+                    android:text="联系电话："
+                    android:textColor="#000000"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_jiejing_dianhua1"
+                    android:layout_alignTop="@+id/tv_jiejing_dianhua1"
+                    android:id="@+id/tv_jiejing_dianhua"
+                    android:layout_marginLeft="60dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:text="13125085261"
+                    />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_color_2">
+
+            </View>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_anfa_dizhi1"
+                    android:text="案发地址："
+                    android:textColor="#000000"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@+id/tv_anfa_dizhi1"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_anfa_dizhi"
+                        android:layout_gravity="right"
+                        android:layout_centerVertical="true"
+                        android:text="抢夺>抢夺钱财>活动时间水电"
+                       />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_color_2">
+
+            </View>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:id="@+id/tv_jingq_neirong1"
+                    android:text="报警内容："
+                    android:textColor="#000000"/>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_jingq_neirong"
+
+                        android:layout_marginTop="10dp"
+                        android:layout_centerVertical="true"
+                        android:text="抢夺>抢夺钱财>活动时间水电费第三个好说歹说代课教师的话"
+                        />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="22dp"
+                android:background="@color/gray_color_2">
+
+            </View>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="反馈资料："
+                    android:textColor="#000000"/>
+            </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:listSelector="@android:color/transparent"
+                android:scrollbarStyle="outsideOverlay"
+                app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                app:spanCount="4"
+                />
+
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_color_2">
+
+        </View>
+        <com.zondy.mapgis.android.mapview.MapView
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginTop="1dp"
+            android:id="@+id/mapview"
+            >
+
+        </com.zondy.mapgis.android.mapview.MapView>
+        
+    </LinearLayout>
+
+
+
+    </ScrollView>
+
+    <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+        android:layout_weight="1"
+       android:id="@+id/ll_bottom"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="2dp"
+       >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            style="@style/textview_actionbar_btn_style"
+            android:background="@drawable/selector_jingqcl_btn_bg"
+            android:textStyle="bold"
+            android:id="@+id/tv_fankui"
+            android:text="我要反馈"
+            android:textSize="18sp"/>
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="40dp"
+           style="@style/textview_actionbar_btn_style"
+           android:id="@+id/tv_fankui_jilu"
+           android:layout_toRightOf="@+id/tv_fankui"
+           android:background="@drawable/selector_jingqcl_btn_bg"
+           android:layout_marginLeft="40dp"
+           android:text="反馈记录"
+           android:textStyle="bold"
+           android:textSize="18sp"/>
+   </LinearLayout>
+
+
+</LinearLayout>

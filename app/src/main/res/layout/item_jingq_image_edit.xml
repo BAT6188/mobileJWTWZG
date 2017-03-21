@@ -9,6 +9,6 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/meishi_1"
+        app:srcCompat="@drawable/timg"
         android:id="@+id/iv_handled_jingq_image" />
 </LinearLayout>

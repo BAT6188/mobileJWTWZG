@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="1dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:id="@+id/iv_receive_state"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_yichakan"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_shijian"
+            android:layout_toRightOf="@+id/iv_receive_state"
+            android:layout_centerVertical="true"
+            android:text="2017-02-27 12:30"
+            android:textSize="15sp"
+            android:layout_marginLeft="10dp"/>
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_toRightOf="@+id/tv_shijian"
+           android:id="@+id/tv_jingqzt"
+           android:layout_centerVertical="true"
+           android:text="处警完毕，资料提交成功"
+           android:layout_alignParentRight="true"
+            android:gravity="right"
+           android:textColor="#3573EC"
+
+           android:layout_marginLeft="2dp"
+            android:layout_marginRight="10dp"
+           />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+    <ImageView
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_centerVertical="true"
+        android:id="@+id/iv_jingqlb"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/ic_jingqlb"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/iv_jingqlb"
+        android:layout_centerVertical="true"
+        android:id="@+id/tv_jingqlb"
+        android:text="违法犯罪警情"
+       />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+
+            android:id="@+id/iv_jingqdz"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/ic_dizhi"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/iv_jingqdz"
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_dizhi"
+            android:text="XXX镇XXX路XXX号撒发生的电风扇"
+
+
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/iv_jiejingren"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/ic_jiejingren"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/iv_jiejingren"
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_jiejingren"
+            android:text="王大崔"
+
+
+            />
+    </RelativeLayout>
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp">
+
+      <ImageView
+          android:layout_width="18dp"
+          android:layout_height="18dp"
+          android:id="@+id/iv_jiejingneirong"
+          android:layout_marginLeft="30dp"
+          android:src="@drawable/ic_jingqneirong"
+          />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
+       android:layout_toRightOf="@+id/iv_jiejingneirong"
+        android:layout_centerVertical="true"
+        android:id="@+id/tv_neirong"
+        android:text="我的女儿步行至此处，被一辆电动三轮车撞伤，现人受伤我将其先送往医院，请派人处理。"
+
+        />
+
+  </RelativeLayout>
+</LinearLayout>

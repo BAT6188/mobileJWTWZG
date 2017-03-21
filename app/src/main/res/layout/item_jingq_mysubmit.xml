@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="1dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:id="@+id/iv_receive_state"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_yichakan"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_shijian"
+            android:layout_toRightOf="@+id/iv_receive_state"
+            android:layout_centerVertical="true"
+            android:text="2017-02-27 12:30"
+            android:layout_marginLeft="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_shijian"
+            android:id="@+id/tv_shenhezt"
+            android:layout_centerVertical="true"
+            android:text="未审核"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/iv_jingqlb"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/ic_jingqlb"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/iv_jingqlb"
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_jingqlb"
+            android:text="违法犯罪警情"
+          />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/iv_jingqdz"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/ic_dizhi"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/iv_jingqdz"
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_dizhi"
+            android:text="XXX镇XXX路XXX号"
+
+
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:id="@+id/iv_jiejingneirong"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/ic_jingqneirong"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/iv_jiejingneirong"
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_neirong"
+
+            android:text="我的女儿步行至此处，被一辆电动三轮车撞伤，现人受伤我将其先送往医院，请派人处理。"
+
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:id="@+id/rl_phone">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/iv_dianhualx"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/ic_telephone"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/iv_dianhualx"
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_gongbandh"
+
+            android:text="供办联系电话："
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv_gongbandh"
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_phone"
+            android:text="13248765290"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_toRightOf="@+id/tv_phone"
+            android:id="@+id/tv_call"
+            android:text="拨号"
+            android:textColor="@color/white"
+            android:background="@drawable/selector_btn_bg"
+            android:gravity="center"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_alignParentRight="true"
+            android:textSize="14sp"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:id="@+id/rl_reason">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:id="@+id/iv_nopassreason"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/ic_jingqneirong"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/iv_nopassreason"
+            android:layout_centerVertical="true"
+            android:text="审核未通过原因："
+
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:id="@+id/rl_reason1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="54dp"
+            android:layout_marginRight="12dp"
+            android:id="@+id/tv_reason"
+            android:layout_centerVertical="true"
+            android:text="审核人在休息，请勿打扰胜多负少鬼斧神工的规范的合格放大缩小。"
+
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:id="@+id/rl_again">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginTop="0dp"
+
+            android:layout_marginRight="10dp"
+            android:id="@+id/tv_again"
+            style="@style/textview_actionbar_btn_style"
+            android:layout_alignParentRight="true"
+            android:text="再次提交"
+            android:textSize="14sp"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

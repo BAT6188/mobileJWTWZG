@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="#f3f3f3"
+    android:layout_height="match_parent"
+    tools:context=".view.impl.MyJingqSubmitActivity">
+
+    <include layout="@layout/content_toolbar"
+        />
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:layout_marginTop="1dp"
+        android:id="@+id/rl_jingqsubmitdatas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.jcodecraeer.xrecyclerview.XRecyclerView>
+
+</LinearLayout>

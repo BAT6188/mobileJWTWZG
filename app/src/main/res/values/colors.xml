@@ -9,6 +9,9 @@
     <color name="gray_color_2">#666666</color><!-- 灰度值：2;灰度值越大，颜色越深-->
     <color name="gray_color_3">#333333</color><!-- 灰度值：3;灰度值越大，颜色越深 -->
 
+    <color name="divide_color">#f3f3f3</color><!--分割线颜色-->
+    <color name="jingqclbg">#f3f3f3</color>
+
     <!-- 关于actionBbar -->
     <color name="actionbar_title_color">#002D4A</color> <!-- Color.rgb(0, 156, 131) -->
     <color name="actionbar_color">#437CFD</color> <!-- Color.rgb(0, 156, 131) -->

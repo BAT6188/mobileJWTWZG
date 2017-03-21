@@ -1,24 +1,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+              android:layout_width="match_parent"
+              android:background="@drawable/selector_ma_ll_bg"
+              android:padding="5dp"
+              android:gravity="center_vertical"
+              android:layout_height="60dp">
 
     <ImageView
+        android:layout_marginLeft="25dp"
         android:id="@+id/iv_value"
-        android:padding="5dp"
         android:layout_width="wrap_content"
-        android:src="@drawable/ic_shezhi"
         android:layout_height="match_parent"
-        android:scaleType="fitCenter" />
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_shezhi"/>
 
     <TextView
+        android:layout_marginLeft="20dp"
         android:id="@+id/tv_value"
         style="@style/common_textview_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
         android:gravity="left|center_vertical"
         android:padding="5dp"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+
 </LinearLayout>

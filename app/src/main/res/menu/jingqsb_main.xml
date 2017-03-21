@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
-        android:id="@+id/delete"
-        android:icon="@drawable/ic_handlejingq_delete_img"
-        android:title="删除"
-        app:showAsAction="always"
-        ></item>
+        android:id="@+id/myshangbao"
+        android:icon="@drawable/ic_shezhi"
+        android:title="我的上报"
+        >
+    </item>
+
 </menu>

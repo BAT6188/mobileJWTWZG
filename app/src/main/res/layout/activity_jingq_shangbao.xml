@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f3f3f3"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<include layout="@layout/content_toolbar"></include>
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:scrollbars="none"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+       <com.zondy.mapgis.android.mapview.MapView
+           android:layout_width="match_parent"
+           android:layout_height="220dp"
+           android:id="@+id/mapview">
+
+       </com.zondy.mapgis.android.mapview.MapView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_color_2">
+
+            </View>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="0dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/tv_dz"
+                    android:text="警情地点："
+                    android:textStyle="bold"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="50dp"
+                    android:id="@+id/et_dz"
+                    android:layout_toLeftOf="@+id/btn_location"
+                   android:layout_marginTop="2dp"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:layout_marginBottom="5dp"
+                    android:hint="请输入案件的地址..."
+                    android:textColor="@color/gray_color_2"
+
+
+                    />
+                    <Button
+                        android:id="@+id/btn_location"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/ic_dizhi"/>
+
+</LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_color_2">
+
+            </View>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:layout_marginTop="0dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/tv_lb"
+               android:textStyle="bold"
+                android:text="警情类别："
+
+                />
+            <ImageView
+                android:id="@+id/xialasp1"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="30dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_xiala_sp"/>
+            <Spinner
+
+                android:id="@+id/sp_anjian_leibie"
+                android:layout_width="wrap_content"
+                android:layout_height="65dp"
+                android:layout_toRightOf="@+id/tv_lb"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="-12dp"
+                android:layout_toLeftOf="@+id/xialasp1"
+                android:background="@null"
+                android:gravity="right|center_vertical"
+                android:clickable="true"
+                android:spinnerMode="dropdown"
+                >
+
+            </Spinner>
+        </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_color_2">
+
+            </View>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:layout_marginTop="0dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_lx"
+                    android:text="警情类型："
+                    android:textStyle="bold"
+                    />
+                <ImageView
+                    android:id="@+id/xialasp2"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="30dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_xiala_sp"/>
+                <Spinner
+                    android:id="@+id/sp_anjian_leixing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="65dp"
+
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/xialasp2"
+                    android:layout_toRightOf="@+id/tv_lx"
+                    android:layout_marginRight="-12dp"
+                    android:layout_marginLeft="50dp"
+                    android:background="@null"
+                    style="@style/common_textview_style"
+                    android:clickable="true"
+                    android:spinnerMode="dropdown" >
+
+                </Spinner>
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_color_2">
+
+            </View>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:layout_marginTop="0dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_xl"
+                    android:text="警情细类："
+                    android:textStyle="bold"
+                    />
+                <ImageView
+                    android:id="@+id/xialasp3"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="30dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_xiala_sp"/>
+                <Spinner
+                    android:id="@+id/sp_anjian_xilei"
+                    android:layout_width="wrap_content"
+                    android:layout_height="65dp"
+
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:background="@null"
+                    android:layout_toLeftOf="@+id/xialasp3"
+                    android:layout_marginRight="-12dp"
+                    android:layout_toRightOf="@+id/tv_xl"
+                    style="@style/common_textview_style"
+                    android:clickable="true"
+                    android:spinnerMode="dropdown" >
+
+                </Spinner>
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_color_2">
+
+            </View>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="上报内容："
+        android:textStyle="bold"/>
+    <EditText
+        android:gravity="left|top"
+        android:id="@+id/et_sbnr"
+        android:layout_width="match_parent"
+        android:background="@null"
+        android:layout_height="100dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/gray_color_2"
+        android:hint="请输入上报警情的内容..."
+        />
+
+</LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_color_2">
+
+            </View>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_media"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:listSelector="@android:color/transparent"
+                android:scrollbarStyle="outsideOverlay"
+                app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                app:spanCount="4"
+                tools:listitem="@layout/list_item_image"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_color_2">
+
+    </View>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="2dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            style="@style/textview_actionbar_btn_style"
+            android:textStyle="bold"
+            android:id="@+id/tv_shangbao"
+            android:text="确认处理"
+            android:textSize="18sp"
+            android:background="@drawable/selector_jingqcl_btn_bg"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            style="@style/textview_actionbar_btn_style"
+            android:id="@+id/tv_tianjia"
+            android:layout_toRightOf="@+id/tv_shangbao"
+            android:layout_marginLeft="40dp"
+            android:text="添加资料"
+            android:textStyle="bold"
+            android:background="@drawable/selector_jingqcl_btn_bg"
+            android:textSize="18sp"/>
+    </LinearLayout>
+
+</LinearLayout>

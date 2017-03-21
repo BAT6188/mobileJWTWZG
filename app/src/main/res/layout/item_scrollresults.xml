@@ -20,7 +20,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="10dp"
         android:scaleType="fitXY"
-        android:src="@drawable/meishi_1"
+        android:src="@drawable/timg"
 
         />
 

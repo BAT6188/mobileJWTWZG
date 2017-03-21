@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/sos"
+        android:icon="@drawable/ic_toolbar_baoj"
+        android:title="一键报警"
+        app:showAsAction="always">
+    </item>
+    <item
+        android:id="@+id/xiecha"
+        android:icon="@drawable/ic_shezhi"
+        android:title="要案协查">
+
+    </item>
+    <item
+        android:id="@+id/jingqsb"
+        android:icon="@drawable/ic_shezhi"
+        android:title="警情上报"
+        >
+    </item>
+
+</menu>
