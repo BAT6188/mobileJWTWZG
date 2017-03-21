@@ -9,9 +9,9 @@
     </style>
 
     <style name="CollapsingToolbarTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#3F51B5</item>
-        <item name="colorPrimaryDark">#3F51B5</item>
-        <item name="colorAccent">#FF3030</item>
+        <item name="colorPrimary">#199793</item>
+        <item name="colorPrimaryDark">#199793</item>
+        <item name="colorAccent">#199793</item>
     </style>
     <!-- 自定义button样式:yuwj -->
     <style name="textview_actionbar_btn_style">
